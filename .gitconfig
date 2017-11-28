@@ -1,0 +1,70 @@
+[core]
+	mergetool = meld
+	fileMode = false
+
+[diff]
+    	tool = meld
+
+[alias]
+	a = add --all
+	ai = add -i
+	#############
+	b = branch
+	ba = branch -a
+	bd = branch -d
+	bdel = branch -
+	br = branch -r
+	rename = branch -m
+	#############
+	c = commit
+	ca = commit -a
+	cm = commit -m
+	amend = commit --amend
+	remend = commit --amend --no-edit
+	#############
+	d = diff
+	dc = diff --cached
+	dl = difftool
+	dlc = difftool --cached
+	#############
+	edit = config --global -e
+	#############
+	fk = fsck
+	#############
+	g = grep -p
+	#############
+	l = log --oneline
+	ls = log --oneline --graph --decorate
+	#############
+	m = merge
+	ma = merge --abort
+	mc = merge --continue
+	ms = merge --skip
+	#############
+	co = checkout
+	cob = checkout -b
+	#############
+	rba = rebase --abort
+	rbc = rebase --continue
+	rbi = rebase --interactive
+	#############
+	re = reset
+	rh = reset HEAD
+	#############
+	st = status
+	stb = status -s -b
+
+	squash = "!f(){ git reset --hard HEAD~$1; \
+                  git merge --squash HEAD@{1}; \
+                  git commit; }; \
+            f"
+
+	#############
+	w = show
+	wp = show -p
+	wr = show -p --no-color
+	#############
+	whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+	#############
+	snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
